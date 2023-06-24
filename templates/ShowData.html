@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Person show {% endblock title %}
+<div class="container">
+    {% block body %}
+     <button class="btn btn-large btn-success mb-3"><a href="{% url 'add' %}">Add</a></button>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">SL No</th>
+            <th scope="col">person name</th>
+            <th scope="col">Person address </th>
+            <th scope="col">person phone </th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for obj in perobj %} 
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{obj.p_name}}</td>
+            <td>{{obj.p_address}}</td>
+            <td>{{obj.p_phone}}</td>
+            <td>
+                <form action="{% url 'edit' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="edit_id" value="{{obj.id}}">
+                    <button type="submit" class="btn btn-primary btn-sm" name="edit">
+                        <span class="glyphicon glyphicon-pencil">E</span>
+                    </button>
+                </form>
+            </td>
+            <td>
+              <form action="{% url 'Delete_data' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="del_id" value="{{obj.id}}">
+                <button type="submit" class="btn btn-primary btn-sm" name="del">
+                    <span class="glyphicon glyphicon-pencil">x</span>
+                </button>
+            </form>
+        
+            </td>
+            <td>
+              <form action="{% url 'deltise' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="details_id" value="{{obj.id}}">
+                <button type="submit" class="btn btn-primary btn-sm" name="del">
+                    <span class="glyphicon glyphicon-pencil">Details</span>
+                </button>
+            </form>
+            </td>
+          </tr>
+        {%endfor %}
+        </tbody>
+      </table>
+
+
+    {% endblock body %}
+</div>

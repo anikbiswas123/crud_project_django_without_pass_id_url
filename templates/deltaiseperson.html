@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Person add {% endblock title %}
+<div class="container">
+    {% block body %}
+
+    <div class="row">
+        <div class="col-8">
+             <div class="card">
+                <div class="card_body">
+                
+                        <strong> Person Name::{{p_obj.p_name}}</strong> <br>
+                        <strong>person address ::{{p_obj.p_address}}</strong><br>
+                        <strong>person Phone ::{{p_obj.p_phone}}</strong>
+                
+                </div>
+             </div>
+             
+            
+             
+        </div>
+    </div>
+
+  
+
+
+    {% endblock body %}
+</div>
